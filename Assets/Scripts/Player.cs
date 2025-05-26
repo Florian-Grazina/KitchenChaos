@@ -11,21 +11,20 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    protected void OnMovement(InputValue inputValue)
+    protected void OnMove(InputValue inputValue)
     {
         movementInput = inputValue.Get<Vector2>();
         Debug.Log($"Raw Input: {movementInput}");
-
     }
 
     private void Move()
     {
         Vector2 delta = speed * Time.deltaTime * movementInput;
 
-        Vector2 newPos = new()
+        Vector3 newPos = new()
         {
             x = transform.position.x + delta.x,
-            y = transform.position.y + delta.y
+            z = transform.position.z + delta.y
         };
 
         transform.position = newPos;
