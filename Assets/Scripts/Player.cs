@@ -6,23 +6,21 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float rotationSpeed = 10f;
 
+    [SerializeField] GameInput gameInput;
+
     private bool isWalking;
-    private Vector2 movementInput;
 
     protected void Update()
     {
         Move();
     }
 
-    protected void OnMove(InputValue inputValue)
-    {
-        movementInput = inputValue.Get<Vector2>().normalized;
-    }
-
     public bool IsWalking() => isWalking;
 
     private void Move()
     {
+        Vector2 movementInput = gameInput.GetMovementInputNormalized();
+
         Vector3 moveDir = new(movementInput.x, 0f, movementInput.y);
         transform.position += speed * Time.deltaTime * moveDir;
 
