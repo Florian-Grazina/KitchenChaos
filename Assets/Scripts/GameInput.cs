@@ -4,7 +4,7 @@ public class GameInput : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
 
-    private void Awake()
+    protected void Awake()
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable(); // enable map
