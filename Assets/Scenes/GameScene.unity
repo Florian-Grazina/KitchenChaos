@@ -730,13 +730,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d55b3470fe7734c95d661838bbb9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameInput: {fileID: 1623677606}
   moveSpeed: 7
   rotationSpeed: 10
-  interactDistance: 2
+  interactDistance: 1
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  gameInput: {fileID: 1623677606}
 --- !u!4 &1639967254
 Transform:
   m_ObjectHideFlags: 0

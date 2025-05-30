@@ -1,21 +1,26 @@
+using Assets.Scripts.Events;
 using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     #region serialize fields
+    [SerializeField] GameInput gameInput;
+
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float interactDistance = 2f;
 
     [SerializeField] private LayerMask countersLayerMask;
+    #endregion
 
-    [SerializeField] GameInput gameInput;
+    #region event
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     #endregion
 
     #region private fields
     private bool isWalking;
-    private 
+    private ClearCounter selectedCounter;
     #endregion
 
     #region unity methods
@@ -28,6 +33,7 @@ public class Player : MonoBehaviour
     protected void Update()
     {
         HandleMovement();
+        HandleInteractions();
     }
     #endregion
 
@@ -38,24 +44,12 @@ public class Player : MonoBehaviour
     #region GameInput methods
     private void GameInput_HandleInteractions(object sender, EventArgs args)
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
-        {
-            Debug.DrawLine(transform.position, raycastHit.point, Color.red);
-
-            if(raycastHit.collider.TryGetComponent(out ClearCounter clearCounter))
-            {
-                clearCounter.Interact();
-            }
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
-        }
+        if(selectedCounter != null)
+            selectedCounter.Interact();
     }
     #endregion
 
     #region private methods
-
     private void HandleMovement()
     {
         Vector2 movementInput = gameInput.GetMovementInputNormalized();
@@ -80,6 +74,30 @@ public class Player : MonoBehaviour
             moveDir.z = 0;
 
         transform.position += moveDistance * moveDir.normalized;
+    }
+
+    private void HandleInteractions()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            Debug.DrawLine(transform.position, raycastHit.point, Color.red);
+            ClearCounter clearCounter = raycastHit.collider.GetComponent<ClearCounter>();
+            SetSelecterCounter(clearCounter);
+        }
+        else
+        {
+            SetSelecterCounter(null);
+            Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
+        }
+    }
+
+    private void SetSelecterCounter(ClearCounter newCounter)
+    {
+        if(selectedCounter != newCounter)
+        {
+            selectedCounter = newCounter;
+            OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs(selectedCounter));
+        }
     }
     #endregion
 }
