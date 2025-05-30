@@ -20,12 +20,14 @@ public class Player : MonoBehaviour
 
     private void HandleInteractions()
     {
-        Vector2 movementInput = gameInput.GetMovementInputNormalized();
-        Vector3 moveDir = new(movementInput.x, 0, movementInput.y);
-
-        if (Physics.Raycast(transform.position, moveDir, out RaycastHit raycastHit, interactDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance))
         {
+            Debug.DrawLine(transform.position, raycastHit.point, Color.red);
             Debug.Log($"Interacting with {raycastHit.collider.name}");
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
         }
     }
 
