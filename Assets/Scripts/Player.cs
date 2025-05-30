@@ -19,17 +19,26 @@ public class Player : MonoBehaviour
     private void Move()
     {
         Vector2 movementInput = gameInput.GetMovementInputNormalized();
-        Vector3 moveDir = new(movementInput.x, 0f, movementInput.y);
+        Vector3 moveDir = new(movementInput.x, 0, movementInput.y);
+
+        isWalking = moveDir != Vector3.zero;
+        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
 
         float playerHeight = 2f;
         float playerRadius = 0.5f;
         float moveDistance = Time.deltaTime * moveSpeed;
 
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
-        if(canMove)
-            transform.position += moveDistance * moveDir;
+        Vector3 capsuleBase = transform.position;
+        Vector3 capsuleTop = capsuleBase + Vector3.up * playerHeight;
 
-        isWalking = moveDir != Vector3.zero;
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
+        // can move X
+        if (Physics.CapsuleCast(capsuleBase, capsuleTop, playerRadius, new (moveDir.x, 0, 0), moveDistance))
+            moveDir.x = 0;
+
+        // can move Z
+        if (Physics.CapsuleCast(capsuleBase, capsuleTop, playerRadius, new (0, 0, moveDir.z), moveDistance))
+            moveDir.z = 0;
+
+        transform.position += moveDistance * moveDir.normalized;
     }
 }
