@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.Image;
 
 public class Player : MonoBehaviour
 {
@@ -20,12 +21,13 @@ public class Player : MonoBehaviour
     private void Move()
     {
         Vector2 movementInput = gameInput.GetMovementInputNormalized();
-
         Vector3 moveDir = new(movementInput.x, 0f, movementInput.y);
-        transform.position += speed * Time.deltaTime * moveDir;
+
+        bool canMove = !Physics.Raycast(transform.position, transform.forward, 1);
+        if(canMove)
+            transform.position += speed * Time.deltaTime * moveDir;
 
         isWalking = moveDir != Vector3.zero;
-
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
     }
 }
