@@ -2,28 +2,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region serialize fields
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float interactDistance = 2f;
 
+    [SerializeField] private LayerMask countersLayerMask;
 
     [SerializeField] GameInput gameInput;
+    #endregion
 
+    #region private fields
     private bool isWalking;
-    public bool IsWalking() => isWalking;
+    private 
+    #endregion
 
+    #region unity methods
     protected void Update()
     {
         HandleMovement();
         HandleInteractions();
     }
+    #endregion
 
+    #region public methods
+    public bool IsWalking() => isWalking;
+    #endregion
+
+    #region private methods
     private void HandleInteractions()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
             Debug.DrawLine(transform.position, raycastHit.point, Color.red);
-            Debug.Log($"Interacting with {raycastHit.collider.name}");
+
+            if(raycastHit.collider.TryGetComponent(out ClearCounter clearCounter))
+            {
+                clearCounter.Interact();
+            }
         }
         else
         {
@@ -56,4 +72,5 @@ public class Player : MonoBehaviour
 
         transform.position += moveDistance * moveDir.normalized;
     }
+    #endregion
 }

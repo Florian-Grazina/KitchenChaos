@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6486147452305881812, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.314
+      value: 5.07
       objectReference: {fileID: 0}
     - target: {fileID: 6486147452305881812, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
       propertyPath: m_LocalPosition.y
@@ -733,6 +733,9 @@ MonoBehaviour:
   moveSpeed: 7
   rotationSpeed: 10
   interactDistance: 2
+  countersLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameInput: {fileID: 1623677606}
 --- !u!4 &1639967254
 Transform:
