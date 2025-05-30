@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,10 +19,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region unity methods
+    protected void Start()
+    {
+        if (gameInput != null)
+            gameInput.OnInteractActions += GameInput_HandleInteractions;
+    }
+
     protected void Update()
     {
         HandleMovement();
-        HandleInteractions();
     }
     #endregion
 
@@ -29,8 +35,8 @@ public class Player : MonoBehaviour
     public bool IsWalking() => isWalking;
     #endregion
 
-    #region private methods
-    private void HandleInteractions()
+    #region GameInput methods
+    private void GameInput_HandleInteractions(object sender, EventArgs args)
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
@@ -46,6 +52,9 @@ public class Player : MonoBehaviour
             Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
         }
     }
+    #endregion
+
+    #region private methods
 
     private void HandleMovement()
     {
