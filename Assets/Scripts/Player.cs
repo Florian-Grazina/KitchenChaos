@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask countersLayerMask;
     #endregion
 
+    #region properties
+    public static Player Instance { get; private set; }
+    #endregion
+
     #region event
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     #endregion
@@ -24,6 +28,17 @@ public class Player : MonoBehaviour
     #endregion
 
     #region unity methods
+    protected void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Debug.LogError("Multiple Player instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+        }
+    }
+
     protected void Start()
     {
         if (gameInput != null)

@@ -733,7 +733,7 @@ MonoBehaviour:
   gameInput: {fileID: 1623677606}
   moveSpeed: 7
   rotationSpeed: 10
-  interactDistance: 1
+  interactDistance: 1.3
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
