@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 1623677606}
-  moveSpeed: 7
+  moveSpeed: 8
   rotationSpeed: 10
   interactDistance: 1.3
   countersLayerMask:
@@ -870,6 +870,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4982862231816749679, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
+      propertyPath: tomatoPrefab
+      value: 
+      objectReference: {fileID: 3867309819874844382, guid: b5f089876d959f64eab01c081a78991a, type: 3}
     - target: {fileID: 5802353021814373725, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
       propertyPath: m_Name
       value: ClearCounter

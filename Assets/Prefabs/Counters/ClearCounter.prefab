@@ -133,6 +133,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearCounter: {fileID: 4982862231816749679}
   visualGameObject: {fileID: 1061108082281304738}
+--- !u!1 &3426876197469283565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4044531408006813145}
+  m_Layer: 6
+  m_Name: CounterTopPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4044531408006813145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426876197469283565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.264, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6486147452305881812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4505360677158879231
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +283,7 @@ Transform:
   m_Children:
   - {fileID: 8428568774557390875}
   - {fileID: 6448423253605935727}
+  - {fileID: 4044531408006813145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!65 &5139675723074671732
@@ -287,6 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17c13dddc5279e4ea6fcf016834b468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tomatoPrefab: {fileID: 3867309819874844382, guid: b5f089876d959f64eab01c081a78991a, type: 3}
+  counterTopPoint: {fileID: 4044531408006813145}
 --- !u!1 &8428568774557390874
 GameObject:
   m_ObjectHideFlags: 0
