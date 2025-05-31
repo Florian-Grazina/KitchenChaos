@@ -745,6 +745,7 @@ MonoBehaviour:
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  hands: {fileID: 0}
 --- !u!4 &1639967254
 Transform:
   m_ObjectHideFlags: 0

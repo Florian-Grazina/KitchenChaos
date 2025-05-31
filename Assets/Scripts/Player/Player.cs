@@ -1,8 +1,9 @@
 using Assets.Scripts.Events;
+using Assets.Scripts.Interfaces;
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectHolder
 {
     #region serialize fields
     [SerializeField] GameInput gameInput;
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float interactDistance = 2f;
 
     [SerializeField] private LayerMask countersLayerMask;
+
+    [SerializeField] private Transform hands;
     #endregion
 
     #region properties
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region private fields
+    private KitchenObject _kitchenObject;
     private bool _isWalking;
     private ClearCounter _selectedCounter;
     #endregion
@@ -56,11 +60,23 @@ public class Player : MonoBehaviour
     public bool IsWalking() => _isWalking;
     #endregion
 
+    #region IKitchenObjectHolder
+    public void SetKitchenObject(KitchenObject kitchenObject) => _kitchenObject = kitchenObject;
+
+    public KitchenObject GetKitchenObject() => _kitchenObject;
+
+    public void ClearKitchenObject() => _kitchenObject = null;
+
+    public bool HasKitchenObject() => _kitchenObject != null;
+
+    public Transform GetKitchenObjectFollowTransform() => hands;
+    #endregion
+
     #region GameInput methods
     private void GameInput_HandleInteractions(object sender, EventArgs args)
     {
         if(_selectedCounter != null)
-            _selectedCounter.Interact();
+            _selectedCounter.Interact(this);
     }
     #endregion
 

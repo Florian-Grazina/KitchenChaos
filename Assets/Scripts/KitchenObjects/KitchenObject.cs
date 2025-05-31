@@ -1,28 +1,29 @@
+using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    private ClearCounter _clearCounter;
+    private IKitchenObjectHolder _kitchenObjectHolder;
 
     public KitchenObjectSO GetKitchenObjectSO() => kitchenObjectSO;
 
-    public ClearCounter GetClearCounter() => _clearCounter;
+    public IKitchenObjectHolder GetKitchenObjectHolder() => _kitchenObjectHolder;
 
-    public void SetClearCounter(ClearCounter clearCounter)
+    public void SetObjectHolder(IKitchenObjectHolder kitchenObjectHolder)
     {
-        if (_clearCounter != null)
-            _clearCounter.ClearKitchenObject();
+        if (_kitchenObjectHolder != null)
+            _kitchenObjectHolder.ClearKitchenObject();
 
-        _clearCounter = clearCounter;
+        _kitchenObjectHolder = kitchenObjectHolder;
 
-        if(_clearCounter.HasKitchenObject())
-            Debug.LogError("KitchenObject is already set on this ClearCounter!");
+        if(_kitchenObjectHolder.HasKitchenObject())
+            Debug.LogError($"KitchenObject is already set on this {kitchenObjectHolder.GetType()}!");
 
-        _clearCounter.SetKitchenObject(this);
+        _kitchenObjectHolder.SetKitchenObject(this);
 
-        transform.parent = clearCounter.GetKitchenObjectFollowTransform();
+        transform.parent = kitchenObjectHolder.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
     }
 }
