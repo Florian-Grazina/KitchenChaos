@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region private fields
-    private bool isWalking;
-    private ClearCounter selectedCounter;
+    private bool _isWalking;
+    private ClearCounter _selectedCounter;
     #endregion
 
     #region unity methods
@@ -53,14 +53,14 @@ public class Player : MonoBehaviour
     #endregion
 
     #region public methods
-    public bool IsWalking() => isWalking;
+    public bool IsWalking() => _isWalking;
     #endregion
 
     #region GameInput methods
     private void GameInput_HandleInteractions(object sender, EventArgs args)
     {
-        if(selectedCounter != null)
-            selectedCounter.Interact();
+        if(_selectedCounter != null)
+            _selectedCounter.Interact();
     }
     #endregion
 
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         Vector2 movementInput = gameInput.GetMovementInputNormalized();
         Vector3 moveDir = new(movementInput.x, 0, movementInput.y);
 
-        isWalking = moveDir != Vector3.zero;
+        _isWalking = moveDir != Vector3.zero;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
 
         float playerHeight = 2f;
@@ -108,10 +108,10 @@ public class Player : MonoBehaviour
 
     private void SetSelecterCounter(ClearCounter newCounter)
     {
-        if(selectedCounter != newCounter)
+        if(_selectedCounter != newCounter)
         {
-            selectedCounter = newCounter;
-            OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs(selectedCounter));
+            _selectedCounter = newCounter;
+            OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs(_selectedCounter));
         }
     }
     #endregion
