@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: tomatoPrefab
       value: 
       objectReference: {fileID: 3867309819874844382, guid: ce53c2142f472814eb31151f66b1d8e6, type: 3}
+    - target: {fileID: 4982862231816749679, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
+      propertyPath: kitchenObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: bcd803c79f7a9e9419d5e06c178c986b, type: 2}
     - target: {fileID: 5802353021814373725, guid: f3eac6e580a36dc41a4b4f338e4cdf11, type: 3}
       propertyPath: m_Name
       value: ClearCounter (1)
