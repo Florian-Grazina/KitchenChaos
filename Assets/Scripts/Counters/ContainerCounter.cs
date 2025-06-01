@@ -1,38 +1,18 @@
-using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-public class ContainerCounter : BaseCounter, IKitchenObjectHolder
+public class ContainerCounter : BaseCounter
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    [SerializeField] private Transform counterTopPoint;
-
-    private KitchenObject _kitchenObject;
 
     public override void Interact(Player player)
     {
-        if (_kitchenObject == null)
-            SpawnKitchenObject();
-        else
-        {
-            _kitchenObject.SetObjectHolder(player);
-        }
+        if (HasKitchenObject())
+            SpawnKitchenObject(player);
     }
 
-    #region IKitchenObjectHolder
-    public void SetKitchenObject(KitchenObject kitchenObject) => _kitchenObject = kitchenObject;
-
-    public KitchenObject GetKitchenObject() => _kitchenObject;
-
-    public void ClearKitchenObject() => _kitchenObject = null;
-
-    public bool HasKitchenObject() => _kitchenObject != null;
-
-    public Transform GetKitchenObjectFollowTransform() => counterTopPoint;
-    #endregion
-
-    private void SpawnKitchenObject()
+    private void SpawnKitchenObject(Player player)
     {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-        kitchenObjectTransform.GetComponent<KitchenObject>().SetObjectHolder(this);
+        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+        kitchenObjectTransform.GetComponent<KitchenObject>().SetObjectHolder(player);
     }
 }
