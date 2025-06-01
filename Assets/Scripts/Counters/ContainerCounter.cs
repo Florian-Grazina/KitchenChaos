@@ -1,7 +1,7 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-public class ClearCounter : BaseCounter, IKitchenObjectHolder
+public class ContainerCounter : BaseCounter, IKitchenObjectHolder
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
@@ -22,7 +22,7 @@ public class ClearCounter : BaseCounter, IKitchenObjectHolder
     public void SetKitchenObject(KitchenObject kitchenObject) => _kitchenObject = kitchenObject;
 
     public KitchenObject GetKitchenObject() => _kitchenObject;
-    
+
     public void ClearKitchenObject() => _kitchenObject = null;
 
     public bool HasKitchenObject() => _kitchenObject != null;

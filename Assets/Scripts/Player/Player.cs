@@ -14,7 +14,13 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
 
     [SerializeField] private LayerMask countersLayerMask;
 
-    [SerializeField] private Transform hands;
+    [SerializeField] private Transform kitchenObjectHoldPoint;
+    #endregion
+
+    #region private fields
+    private KitchenObject _kitchenObject;
+    private bool _isWalking;
+    private ClearCounter _selectedCounter;
     #endregion
 
     #region properties
@@ -23,12 +29,6 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
 
     #region event
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
-    #endregion
-
-    #region private fields
-    private KitchenObject _kitchenObject;
-    private bool _isWalking;
-    private ClearCounter _selectedCounter;
     #endregion
 
     #region unity methods
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
 
     public bool HasKitchenObject() => _kitchenObject != null;
 
-    public Transform GetKitchenObjectFollowTransform() => hands;
+    public Transform GetKitchenObjectFollowTransform() => kitchenObjectHoldPoint;
     #endregion
 
     #region GameInput methods
