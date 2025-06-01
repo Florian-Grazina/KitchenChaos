@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseCounter : MonoBehaviour
+public abstract class BaseCounter : MonoBehaviour
 {
-    
+    public abstract void Interact(Player player);
 }

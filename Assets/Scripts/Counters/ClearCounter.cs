@@ -8,7 +8,7 @@ public class ClearCounter : BaseCounter, IKitchenObjectHolder
 
     private KitchenObject _kitchenObject;
 
-    public void Interact(Player player)
+    public override void Interact(Player player)
     {
         if (_kitchenObject == null)
             SpawnKitchenObject();

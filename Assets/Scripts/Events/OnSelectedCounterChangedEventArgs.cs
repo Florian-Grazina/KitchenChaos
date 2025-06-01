@@ -4,9 +4,9 @@ namespace Assets.Scripts.Events
 {
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
 
-        public OnSelectedCounterChangedEventArgs(ClearCounter selectedCounter)
+        public OnSelectedCounterChangedEventArgs(BaseCounter selectedCounter)
         {
             this.selectedCounter = selectedCounter;
         }

@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
     #region private fields
     private KitchenObject _kitchenObject;
     private bool _isWalking;
-    private ClearCounter _selectedCounter;
+    private BaseCounter _selectedCounter;
     #endregion
 
     #region properties
@@ -112,8 +112,8 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
             Debug.DrawLine(transform.position, raycastHit.point, Color.red);
-            ClearCounter clearCounter = raycastHit.collider.GetComponent<ClearCounter>();
-            SetSelecterCounter(clearCounter);
+            BaseCounter baseCounter = raycastHit.collider.GetComponent<BaseCounter>();
+            SetSelecterCounter(baseCounter);
         }
         else
         {
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
         }
     }
 
-    private void SetSelecterCounter(ClearCounter newCounter)
+    private void SetSelecterCounter(BaseCounter newCounter)
     {
         if(_selectedCounter != newCounter)
         {
