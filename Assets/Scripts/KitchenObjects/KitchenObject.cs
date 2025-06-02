@@ -11,7 +11,7 @@ public class KitchenObject : MonoBehaviour
 
     public IKitchenObjectHolder GetKitchenObjectHolder() => _kitchenObjectHolder;
 
-    public void SetObjectHolder(IKitchenObjectHolder kitchenObjectHolder)
+    public void SetKitchenObjectHolder(IKitchenObjectHolder kitchenObjectHolder)
     {
         if (_kitchenObjectHolder != null)
             _kitchenObjectHolder.ClearKitchenObject();

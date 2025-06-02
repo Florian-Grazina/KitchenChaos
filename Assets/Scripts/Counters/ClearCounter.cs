@@ -6,6 +6,11 @@ public class ClearCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        
+        // counter has no object && player has an object, drop it
+        if (!HasKitchenObject() && player.HasKitchenObject())
+        {
+            player.GetKitchenObject().SetKitchenObjectHolder(this);
+        }
     }
+}
 }
