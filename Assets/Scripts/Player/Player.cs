@@ -55,6 +55,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
         {
             if (_kitchenObject != null)
             {
+                Destroy(_kitchenObject.gameObject);
                 ClearKitchenObject();
             }
         }
