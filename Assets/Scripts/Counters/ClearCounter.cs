@@ -1,16 +1,25 @@
-using UnityEngine;
 
 public class ClearCounter : BaseCounter
 {
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
-
     public override void Interact(Player player)
     {
-        // counter has no object && player has an object, drop it
-        if (!HasKitchenObject() && player.HasKitchenObject())
+        // counter has no object
+        if (!HasKitchenObject())
         {
-            player.GetKitchenObject().SetKitchenObjectHolder(this);
+            // player has an object, drop it
+            if (player.HasKitchenObject())
+            {
+                player.GetKitchenObject().SetKitchenObjectHolder(this);
+            }
+        }
+        // counter has an object
+        else
+        {
+            //player has no object, pick it up
+            if (!player.HasKitchenObject())
+            {
+                GetKitchenObject().SetKitchenObjectHolder(player);
+            }
         }
     }
-}
 }
