@@ -8,6 +8,9 @@ public class ContainerCounter : BaseCounter
 
     public override void Interact(Player player)
     {
+        if (player.HasKitchenObject())
+            return;
+
         if (!HasKitchenObject())
             SpawnKitchenObject(player);
     }
