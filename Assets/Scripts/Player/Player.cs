@@ -51,6 +51,14 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
 
     protected void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            if (_kitchenObject != null)
+            {
+                ClearKitchenObject();
+            }
+        }
+
         HandleMovement();
         HandleInteractions();
     }
