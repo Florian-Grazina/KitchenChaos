@@ -184,6 +184,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2601290138354746679, guid: bf85b4ca163e6e240b255a8307f2724f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601290138354746679, guid: bf85b4ca163e6e240b255a8307f2724f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.32
+      objectReference: {fileID: 0}
     - target: {fileID: 4849746020514120947, guid: bf85b4ca163e6e240b255a8307f2724f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.126777
@@ -540,6 +548,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContainerCounter_Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 8951488799925118509, guid: 565c8f6f6979d7d44938c65d7fd4d31a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951488799925118509, guid: 565c8f6f6979d7d44938c65d7fd4d31a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -745,15 +761,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -784,6 +800,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3802785270351719701, guid: 811575f7bc5dbbf44bb39f8cf58a199b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802785270351719701, guid: 811575f7bc5dbbf44bb39f8cf58a199b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.85
+      objectReference: {fileID: 0}
     - target: {fileID: 8451741590608659092, guid: 811575f7bc5dbbf44bb39f8cf58a199b, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Cheese
@@ -884,6 +908,14 @@ PrefabInstance:
     - target: {fileID: 587646806396223232, guid: 04473ef4f532c0e4bb033512501ccfaf, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Cabbage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528966690075343826, guid: 04473ef4f532c0e4bb033512501ccfaf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.167
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528966690075343826, guid: 04473ef4f532c0e4bb033512501ccfaf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1204,6 +1236,14 @@ PrefabInstance:
     - target: {fileID: 587646806396223232, guid: 9fa11024f612ba945ada39b1643a134d, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_MeatPattyRaw
+      objectReference: {fileID: 0}
+    - target: {fileID: 937980104149919076, guid: 9fa11024f612ba945ada39b1643a134d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 937980104149919076, guid: 9fa11024f612ba945ada39b1643a134d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
