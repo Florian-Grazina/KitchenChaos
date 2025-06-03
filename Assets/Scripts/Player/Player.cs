@@ -46,7 +46,10 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
     protected void Start()
     {
         if (gameInput != null)
+        {
             gameInput.OnInteractActions += GameInput_HandleInteractions;
+            gameInput.OnInteractAlternateActions += GameInput_HandleAlternateInteractions;
+        }
     }
 
     protected void Update()
@@ -61,7 +64,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
         }
 
         HandleMovement();
-        HandleInteractions();
+        HandleCounterSelection();
     }
     #endregion
 
@@ -86,6 +89,12 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
     {
         if(_selectedCounter != null)
             _selectedCounter.Interact(this);
+    }
+
+    private void GameInput_HandleAlternateInteractions()
+    {
+        if (_selectedCounter != null)
+            _selectedCounter.InteractAlternate(this);
     }
     #endregion
 
@@ -116,7 +125,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
         transform.position += moveDistance * moveDir.normalized;
     }
 
-    private void HandleInteractions()
+    private void HandleCounterSelection()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {

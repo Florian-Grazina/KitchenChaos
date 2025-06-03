@@ -18,12 +18,20 @@ public class KitchenObject : MonoBehaviour
 
         _kitchenObjectHolder = kitchenObjectHolder;
 
-        if(_kitchenObjectHolder.HasKitchenObject())
+        if (_kitchenObjectHolder.HasKitchenObject())
             Debug.LogError($"KitchenObject is already set on this {kitchenObjectHolder.GetType()}!");
 
         _kitchenObjectHolder.SetKitchenObject(this);
 
         transform.parent = kitchenObjectHolder.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
+    }
+
+    public void DestroySelf()
+    {
+        if (_kitchenObjectHolder != null)
+            _kitchenObjectHolder.ClearKitchenObject();
+
+        Destroy(gameObject);
     }
 }

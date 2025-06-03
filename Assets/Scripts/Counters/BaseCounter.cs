@@ -7,7 +7,7 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectHolder
     private KitchenObject _kitchenObject;
 
     public abstract void Interact(Player player);
-
+    public abstract void InteractAlternate(Player player);
 
     #region IKitchenObjectHolder
     public void SetKitchenObject(KitchenObject kitchenObject) => _kitchenObject = kitchenObject;

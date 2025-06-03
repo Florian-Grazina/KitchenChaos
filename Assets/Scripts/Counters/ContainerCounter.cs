@@ -15,6 +15,11 @@ public class ContainerCounter : BaseCounter
             SpawnKitchenObject(player);
     }
 
+    public override void InteractAlternate(Player player)
+    {
+        // no alternate interaction for container counter
+    }
+
     private void SpawnKitchenObject(Player player)
     {
         Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);

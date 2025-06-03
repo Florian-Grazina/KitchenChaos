@@ -18,4 +18,9 @@ public class ClearCounter : BaseCounter
                 GetKitchenObject().SetKitchenObjectHolder(player);
         }
     }
+
+    public override void InteractAlternate(Player player)
+    {
+        // no alternate interaction for clear counter
+    }
 }
