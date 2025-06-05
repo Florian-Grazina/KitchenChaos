@@ -1,8 +1,9 @@
+using System.Linq;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
-    [SerializeField] private KitchenObjectSO cutKitchenObjectSO;
+    [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
 
     public override void Interact(Player player)
     {
@@ -30,9 +31,25 @@ public class CuttingCounter : BaseCounter
             //player has no object, cut it
             if (!player.HasKitchenObject())
             {
-                GetKitchenObject().DestroySelf();
-                KitchenObject.SpawnKitchenObject(cutKitchenObjectSO, this);
+                KitchenObjectSO cutKitchenObjectSO = GetCuttingRecipeOutput(GetKitchenObject().GetKitchenObjectSO());
+
+                if(cutKitchenObjectSO != null)
+                {
+                    GetKitchenObject().DestroySelf();
+                    KitchenObject.SpawnKitchenObject(cutKitchenObjectSO, this);
+                }
             }
         }
+    }
+
+    private KitchenObjectSO GetCuttingRecipeOutput(KitchenObjectSO inputKitchenObjectSO)
+    {
+        foreach (CuttingRecipeSO cuttingRecipe in cuttingRecipeSOArray)
+        {
+            if (cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO)
+                return cuttingRecipe.outputKitchenObjectSO;
+        }
+        Debug.LogWarning($"No cutting recipe found for {inputKitchenObjectSO}");
+        return null;
     }
 }
