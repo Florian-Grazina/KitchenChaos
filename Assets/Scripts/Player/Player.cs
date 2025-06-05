@@ -91,7 +91,7 @@ public class Player : MonoBehaviour, IKitchenObjectHolder
             _selectedCounter.Interact(this);
     }
 
-    private void GameInput_HandleAlternateInteractions()
+    private void GameInput_HandleAlternateInteractions(object sender, EventArgs args)
     {
         if (_selectedCounter != null)
             _selectedCounter.InteractAlternate(this);
