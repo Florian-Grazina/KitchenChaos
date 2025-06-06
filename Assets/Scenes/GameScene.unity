@@ -865,34 +865,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1086565377167078462, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1086565377167078462, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805160533996779504, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: counterTopPoint
-      value: 
-      objectReference: {fileID: 1523180809}
-    - target: {fileID: 4805160533996779504, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: cuttingRecipeSOArray.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805160533996779504, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: 'cuttingRecipeSOArray.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f7010f7aff4893d4187831b95cbaea38, type: 2}
-    - target: {fileID: 4805160533996779504, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: 'cuttingRecipeSOArray.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ddc50b8efe1282469fec4b554e1ec73, type: 2}
-    - target: {fileID: 4805160533996779504, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-      propertyPath: 'cuttingRecipeSOArray.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: aaa449af163a73a478cbc5f4bb2b8f3a, type: 2}
     - target: {fileID: 7472412705606393018, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
       propertyPath: m_Name
       value: CuttingCounter
@@ -1007,11 +979,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04473ef4f532c0e4bb033512501ccfaf, type: 3}
---- !u!4 &1523180809 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1086565377167078462, guid: 0e6386dd929474044a0089ee43174b55, type: 3}
-  m_PrefabInstance: {fileID: 1371347591}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1545828327
 PrefabInstance:
   m_ObjectHideFlags: 0
