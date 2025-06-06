@@ -1,3 +1,5 @@
+using Assets.Scripts.Events;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -6,6 +8,8 @@ public class CuttingCounter : BaseCounter
     #region serialize fields
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
     #endregion
+
+    public event EventHandler<OnProgressChangedEventArgs> OnCuttingProgressChanged;
 
     #region fields
     private int cuttingProgress;
@@ -26,6 +30,12 @@ public class CuttingCounter : BaseCounter
                     // drop it
                     player.GetKitchenObject().SetKitchenObjectHolder(this);
                     cuttingProgress = 0;
+                    CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipe(GetKitchenObject().GetKitchenObjectSO());
+
+                    OnCuttingProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    {
+                        progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    });
                 }
             }
         }
@@ -47,7 +57,12 @@ public class CuttingCounter : BaseCounter
             KitchenObjectSO inputKitchenObjectSO = GetKitchenObject().GetKitchenObjectSO();
             CuttingRecipeSO cuttingRecipe = GetCuttingRecipe(inputKitchenObjectSO);
 
-            if(cuttingProgress >= cuttingRecipe.cuttingProgressMax)
+            OnCuttingProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            {
+                progressNormalized = (float)cuttingProgress / cuttingRecipe.cuttingProgressMax
+            });
+
+            if (cuttingProgress >= cuttingRecipe.cuttingProgressMax)
             {
                 KitchenObjectSO outputKitchenObjectSO = GetCuttingRecipeOutput(inputKitchenObjectSO);
                 GetKitchenObject().DestroySelf();
