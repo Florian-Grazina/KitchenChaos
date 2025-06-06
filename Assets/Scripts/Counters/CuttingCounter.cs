@@ -10,6 +10,7 @@ public class CuttingCounter : BaseCounter
     #endregion
 
     public event EventHandler<OnProgressChangedEventArgs> OnCuttingProgressChanged;
+    public event EventHandler OnCut;
 
     #region fields
     private int cuttingProgress;
@@ -61,6 +62,8 @@ public class CuttingCounter : BaseCounter
             {
                 progressNormalized = (float)cuttingProgress / cuttingRecipe.cuttingProgressMax
             });
+
+            OnCut?.Invoke(this, EventArgs.Empty);
 
             if (cuttingProgress >= cuttingRecipe.cuttingProgressMax)
             {
