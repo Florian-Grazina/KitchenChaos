@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.5, y: 0.3}
+  m_SizeDelta: {x: 1.4, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7862597294406338609
 CanvasRenderer:
@@ -101,7 +101,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5145253458807043006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.13}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 8836505642063392997}
   - component: {fileID: 8731889262500302290}
   - component: {fileID: 6528894122034304626}
+  - component: {fileID: 7606018367874248244}
   m_Layer: 5
   m_Name: ProgressBarUI
   m_TagString: Untagged
@@ -269,6 +270,18 @@ MonoBehaviour:
   progressBar: {fileID: 2552633492147758743}
   background: {fileID: 3235544443554627362}
   cuttingCounter: {fileID: 4805160533996779504}
+--- !u!114 &7606018367874248244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7871486468187022262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddc8b45b70c6964db559078ca76ca2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3978172256875454951
 PrefabInstance:
   m_ObjectHideFlags: 0
