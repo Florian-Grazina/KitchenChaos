@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class StoveCounter : MonoBehaviour
+public class StoveCounter : BaseCounter
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Interact(Player player)
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InteractAlternate(Player player)
     {
-        
+        throw new System.NotImplementedException();
     }
+
 }
