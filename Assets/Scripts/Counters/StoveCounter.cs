@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class StoveCounter : BaseCounter
 {
+
+
     public override void Interact(Player player)
     {
         throw new System.NotImplementedException();
@@ -11,5 +13,4 @@ public class StoveCounter : BaseCounter
     {
         throw new System.NotImplementedException();
     }
-
 }
