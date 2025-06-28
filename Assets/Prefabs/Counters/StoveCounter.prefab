@@ -78,6 +78,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4788680922968949375}
   m_SourcePrefab: {fileID: 100100000, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
+--- !u!4 &4316662261534144887 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4044531408006813145, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
+  m_PrefabInstance: {fileID: 272136376894074030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5999018742264320499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5802353021814373725, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
@@ -95,7 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d2a109605711d4389c840dba92f06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterTopPoint: {fileID: 0}
+  counterTopPoint: {fileID: 4316662261534144887}
+  fryingRecipeSOArray:
+  - {fileID: 11400000, guid: cfc507ba374dc394b869a6c3ffb3b3c4, type: 2}
+  - {fileID: 11400000, guid: 0ed8313a2470d114fbd7d219ea44cac5, type: 2}
 --- !u!4 &6468785527054440058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6486147452305881812, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
@@ -109,6 +117,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6468785527054440058}
     m_Modifications:
+    - target: {fileID: 496015676961670754, guid: 93af8b85a17635f40a5b76ed82a86c18, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a0afd856a35421469b28b916116fd9c, type: 2}
+    - target: {fileID: 568043644244199763, guid: 93af8b85a17635f40a5b76ed82a86c18, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a0afd856a35421469b28b916116fd9c, type: 2}
     - target: {fileID: 4386361873462607087, guid: 93af8b85a17635f40a5b76ed82a86c18, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -185,6 +201,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8864449973679823643, guid: 93af8b85a17635f40a5b76ed82a86c18, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a0afd856a35421469b28b916116fd9c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
