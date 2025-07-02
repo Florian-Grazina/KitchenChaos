@@ -1,10 +1,12 @@
-using Assets.Scripts.Events;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 public class StoveCounter : BaseCounter
 {
+    #region serialize fields
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
+    #endregion
 
     #region public methods
     public override void Interact(Player player)
@@ -34,7 +36,6 @@ public class StoveCounter : BaseCounter
 
     public override void InteractAlternate(Player player)
     {
-        throw new System.NotImplementedException();
     }
     #endregion
 
