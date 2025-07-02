@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -6,6 +5,30 @@ public class StoveCounter : BaseCounter
 {
     #region serialize fields
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
+    private float fryingTimer;
+    #endregion
+
+    #region unity methods
+    protected void Update()
+    {
+        if (HasKitchenObject())
+        {
+            fryingTimer += Time.deltaTime;
+            FryingRecipeSO fryingRecipe = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
+
+            Debug.Log("Frying timer: " + fryingTimer + " / " + fryingRecipe.fryingTimerMax);
+
+            if (fryingTimer > fryingRecipe.fryingTimerMax)
+            {
+                Debug.Log("Destrying");
+                GetKitchenObject().DestroySelf();
+                Debug.Log("Destroyed");
+
+                KitchenObjectSO outputKitchenObjectSO = GetFryingRecipeOutput(GetKitchenObject().GetKitchenObjectSO());
+                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
+            }
+        }
+    }
     #endregion
 
     #region public methods
