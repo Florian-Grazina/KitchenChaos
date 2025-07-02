@@ -13,19 +13,21 @@ public class StoveCounter : BaseCounter
     {
         if (HasKitchenObject())
         {
+            FryingRecipeSO fryingRecipeSO = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
+
+            if (fryingRecipeSO == null)
+                return;
+
             fryingTimer += Time.deltaTime;
-            FryingRecipeSO fryingRecipe = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
 
-            Debug.Log("Frying timer: " + fryingTimer + " / " + fryingRecipe.fryingTimerMax);
+            Debug.Log("Frying timer: " + fryingTimer + " / " + fryingRecipeSO.fryingTimerMax);
 
-            if (fryingTimer > fryingRecipe.fryingTimerMax)
+            if (fryingTimer > fryingRecipeSO.fryingTimerMax)
             {
-                Debug.Log("Destrying");
                 GetKitchenObject().DestroySelf();
-                Debug.Log("Destroyed");
 
-                KitchenObjectSO outputKitchenObjectSO = GetFryingRecipeOutput(GetKitchenObject().GetKitchenObjectSO());
-                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
+                KitchenObject.SpawnKitchenObject(fryingRecipeSO.outputKitchenObjectSO, this);
+                fryingTimer = 0f; // Reset the frying timer after cooking
             }
         }
     }
@@ -53,7 +55,10 @@ public class StoveCounter : BaseCounter
         {
             //player has no object, pick it up
             if (!player.HasKitchenObject())
+            {
                 GetKitchenObject().SetKitchenObjectHolder(player);
+                fryingTimer = 0f;
+            }
         }
     }
 
@@ -78,8 +83,8 @@ public class StoveCounter : BaseCounter
     {
         return fryingRecipeSOArray.Any(fryingRecipe => fryingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
-
     private FryingRecipeSO GetFryingRecipe(KitchenObjectSO inputKitchenObjectSO)
+
     {
         return fryingRecipeSOArray.FirstOrDefault(cuttingRecipe => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
