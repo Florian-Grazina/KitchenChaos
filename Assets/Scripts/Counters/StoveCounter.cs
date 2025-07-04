@@ -78,10 +78,12 @@ public class StoveCounter : BaseCounter
 
         burningTimer += Time.deltaTime;
 
+        Debug.Log($"Burning timer: {burningTimer} / {currentBurningRecipeSO.burningTimerMax}");
+
         if (burningTimer > currentBurningRecipeSO.burningTimerMax)
         {
             GetKitchenObject().DestroySelf();
-            KitchenObject.SpawnKitchenObject(currentFryingRecipeSO.outputKitchenObjectSO, this);
+            KitchenObject.SpawnKitchenObject(currentBurningRecipeSO.outputKitchenObjectSO, this);
 
             state = State.Burned;
         }
