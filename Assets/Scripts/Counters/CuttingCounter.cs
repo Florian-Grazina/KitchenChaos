@@ -3,13 +3,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter, IHasProgress
 {
     #region serialize fields
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
     #endregion
 
-    public event EventHandler<OnProgressChangedEventArgs> OnCuttingProgressChanged;
+    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnCut;
 
     #region fields
@@ -33,7 +33,7 @@ public class CuttingCounter : BaseCounter
                     cuttingProgress = 0;
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipe(GetKitchenObject().GetKitchenObjectSO());
 
-                    OnCuttingProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
                     {
                         progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                     });
@@ -58,7 +58,7 @@ public class CuttingCounter : BaseCounter
             KitchenObjectSO inputKitchenObjectSO = GetKitchenObject().GetKitchenObjectSO();
             CuttingRecipeSO cuttingRecipe = GetCuttingRecipe(inputKitchenObjectSO);
 
-            OnCuttingProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
             {
                 progressNormalized = (float)cuttingProgress / cuttingRecipe.cuttingProgressMax
             });

@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: cuttingCounter
       value: 
       objectReference: {fileID: 4805160533996779504}
+    - target: {fileID: 6590093701791328980, guid: 7e01b700b2e9d1747b4069676be213c1, type: 3}
+      propertyPath: hasProgressGameObject
+      value: 
+      objectReference: {fileID: 7472412705606393018}
     - target: {fileID: 7841575016912576272, guid: 7e01b700b2e9d1747b4069676be213c1, type: 3}
       propertyPath: m_Name
       value: ProgressBarUI
