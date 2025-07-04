@@ -117,7 +117,7 @@ public class StoveCounter : BaseCounter
             if (!player.HasKitchenObject())
             {
                 GetKitchenObject().SetKitchenObjectHolder(player);
-                currentFryingRecipeSO = null;
+                state = State.Idle;
             }
         }
     }
@@ -128,17 +128,6 @@ public class StoveCounter : BaseCounter
     #endregion
 
     #region private methods
-    private KitchenObjectSO GetFryingRecipeOutput(KitchenObjectSO inputKitchenObjectSO)
-    {
-        FryingRecipeSO fryingRecipe = GetFryingRecipeSO(inputKitchenObjectSO);
-
-        if (fryingRecipe != null)
-            return fryingRecipe.outputKitchenObjectSO;
-
-        Debug.LogWarning($"No cutting recipe found for {inputKitchenObjectSO}");
-        return null;
-    }
-
     private bool HasFryingRecipe(KitchenObjectSO inputKitchenObjectSO)
     {
         return fryingRecipeSOArray.Any(fryingRecipe => fryingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
