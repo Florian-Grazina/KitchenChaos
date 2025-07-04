@@ -1,9 +1,10 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class StoveCounter : BaseCounter
 {
-    private enum State
+    public enum StateEnum
     {
         Idle,
         Frying,
@@ -14,18 +15,35 @@ public class StoveCounter : BaseCounter
     #region serialize fields
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
+    #endregion
 
+    #region fields
     private float fryingTimer;
     private FryingRecipeSO currentFryingRecipeSO;
     private float burningTimer;
     private BurningRecipeSO currentBurningRecipeSO;
-    private State state;
+    private StateEnum state;
+    private StateEnum State
+    {
+        get => state;
+        set
+        {
+            if (state == value) return;
+            state = value;
+            OnStateChanged?.Invoke(this, new OnStatechangedEventArgs() { state = state });
+        }
+    }
+    #endregion
+
+    #region events
+    public EventHandler<OnStatechangedEventArgs> OnStateChanged;
+    public class OnStatechangedEventArgs : EventArgs { public StateEnum state; }
     #endregion
 
     #region unity methods
     protected void Start()
     {
-        state = State.Idle;
+        State = StateEnum.Idle;
     }
 
     protected void Update()
@@ -33,18 +51,18 @@ public class StoveCounter : BaseCounter
         if (!HasKitchenObject())
             return;
 
-        switch (state)
+        switch (State)
         {
-            case State.Idle:
+            case StateEnum.Idle:
                 // HandleIdleState();
                 break;
-            case State.Frying:
+            case StateEnum.Frying:
                 HandleFryingState();
                 break;
-            case State.Fried:
+            case StateEnum.Fried:
                 HandleFriedState();
                 break;
-            case State.Burned:
+            case StateEnum.Burned:
                 // HandleBurnedState();
                 break;
         }
@@ -65,7 +83,7 @@ public class StoveCounter : BaseCounter
             GetKitchenObject().DestroySelf();
             KitchenObject.SpawnKitchenObject(currentFryingRecipeSO.outputKitchenObjectSO, this);
 
-            state = State.Fried;
+            State = StateEnum.Fried;
             currentBurningRecipeSO = GetBurningRecipeSO(GetKitchenObject().GetKitchenObjectSO());
             burningTimer = 0f;
         }
@@ -85,7 +103,8 @@ public class StoveCounter : BaseCounter
             GetKitchenObject().DestroySelf();
             KitchenObject.SpawnKitchenObject(currentBurningRecipeSO.outputKitchenObjectSO, this);
 
-            state = State.Burned;
+            State = StateEnum.Burned;
+            OnStateChanged?.Invoke(this, new OnStatechangedEventArgs() { state = state });
         }
     }
     #endregion
@@ -106,7 +125,7 @@ public class StoveCounter : BaseCounter
                     player.GetKitchenObject().SetKitchenObjectHolder(this);
                     currentFryingRecipeSO = GetFryingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
                     fryingTimer = 0f;
-                    state = State.Frying;
+                    State = StateEnum.Frying;
                 }
             }
         }
@@ -117,7 +136,7 @@ public class StoveCounter : BaseCounter
             if (!player.HasKitchenObject())
             {
                 GetKitchenObject().SetKitchenObjectHolder(player);
-                state = State.Idle;
+                State = StateEnum.Idle;
             }
         }
     }
@@ -135,13 +154,13 @@ public class StoveCounter : BaseCounter
 
     private FryingRecipeSO GetFryingRecipeSO(KitchenObjectSO inputKitchenObjectSO)
     {
-        return fryingRecipeSOArray.FirstOrDefault(cuttingRecipe 
+        return fryingRecipeSOArray.FirstOrDefault(cuttingRecipe
             => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
 
     private BurningRecipeSO GetBurningRecipeSO(KitchenObjectSO inputKitchenObjectSO)
     {
-        return burningRecipeSOArray.FirstOrDefault(cuttingRecipe 
+        return burningRecipeSOArray.FirstOrDefault(cuttingRecipe
             => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
     #endregion
