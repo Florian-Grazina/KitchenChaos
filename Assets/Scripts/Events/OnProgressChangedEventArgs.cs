@@ -3,5 +3,10 @@
     public class OnProgressChangedEventArgs
     {
         public float progressNormalized;
+
+        public OnProgressChangedEventArgs(float progressNormalized)
+        {
+            this.progressNormalized = progressNormalized;
+        }
     }
 }

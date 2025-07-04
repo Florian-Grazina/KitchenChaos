@@ -1,8 +1,9 @@
+using Assets.Scripts.Events;
 using System;
 using System.Linq;
 using UnityEngine;
 
-public class StoveCounter : BaseCounter
+public class StoveCounter : BaseCounter, IHasProgress
 {
     public enum StateEnum
     {
@@ -30,14 +31,14 @@ public class StoveCounter : BaseCounter
         {
             if (state == value) return;
             state = value;
-            OnStateChanged?.Invoke(this, new OnStatechangedEventArgs() { state = state });
+            OnStateChanged?.Invoke(this, new OnStateChangedEventArgs(state));
         }
     }
     #endregion
 
     #region events
-    public EventHandler<OnStatechangedEventArgs> OnStateChanged;
-    public class OnStatechangedEventArgs : EventArgs { public StateEnum state; }
+    public EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
     #endregion
 
     #region unity methods
@@ -77,6 +78,7 @@ public class StoveCounter : BaseCounter
             return;
 
         fryingTimer += Time.deltaTime;
+        ProgressChanged(fryingTimer, currentFryingRecipeSO.fryingTimerMax);
 
         if (fryingTimer > currentFryingRecipeSO.fryingTimerMax)
         {
@@ -95,8 +97,7 @@ public class StoveCounter : BaseCounter
             return;
 
         burningTimer += Time.deltaTime;
-
-        Debug.Log($"Burning timer: {burningTimer} / {currentBurningRecipeSO.burningTimerMax}");
+        ProgressChanged(burningTimer, currentBurningRecipeSO.burningTimerMax);
 
         if (burningTimer > currentBurningRecipeSO.burningTimerMax)
         {
@@ -104,7 +105,6 @@ public class StoveCounter : BaseCounter
             KitchenObject.SpawnKitchenObject(currentBurningRecipeSO.outputKitchenObjectSO, this);
 
             State = StateEnum.Burned;
-            OnStateChanged?.Invoke(this, new OnStatechangedEventArgs() { state = state });
         }
     }
     #endregion
@@ -162,6 +162,12 @@ public class StoveCounter : BaseCounter
     {
         return burningRecipeSOArray.FirstOrDefault(cuttingRecipe
             => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
+    }
+
+    private void ProgressChanged(float timer, float maxTimer)
+    {
+        float progress = timer / maxTimer;
+        OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(progress));
     }
     #endregion
 }

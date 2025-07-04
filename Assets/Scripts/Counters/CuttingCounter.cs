@@ -33,10 +33,9 @@ public class CuttingCounter : BaseCounter, IHasProgress
                     cuttingProgress = 0;
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipe(GetKitchenObject().GetKitchenObjectSO());
 
-                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
-                    {
-                        progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
-                    });
+                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(
+                        (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    ));
                 }
             }
         }
@@ -58,10 +57,9 @@ public class CuttingCounter : BaseCounter, IHasProgress
             KitchenObjectSO inputKitchenObjectSO = GetKitchenObject().GetKitchenObjectSO();
             CuttingRecipeSO cuttingRecipe = GetCuttingRecipe(inputKitchenObjectSO);
 
-            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
-            {
-                progressNormalized = (float)cuttingProgress / cuttingRecipe.cuttingProgressMax
-            });
+            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(
+                (float)cuttingProgress / cuttingRecipe.cuttingProgressMax)
+            );
 
             OnCut?.Invoke(this, EventArgs.Empty);
 
@@ -80,7 +78,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
     {
         CuttingRecipeSO cuttingRecipe = GetCuttingRecipe(inputKitchenObjectSO);
 
-        if(cuttingRecipe != null)
+        if (cuttingRecipe != null)
             return cuttingRecipe.outputKitchenObjectSO;
 
         Debug.LogWarning($"No cutting recipe found for {inputKitchenObjectSO}");
