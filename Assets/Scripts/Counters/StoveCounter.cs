@@ -13,9 +13,12 @@ public class StoveCounter : BaseCounter
 
     #region serialize fields
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
+    [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
 
     private float fryingTimer;
     private FryingRecipeSO currentFryingRecipeSO;
+    private float burningTimer;
+    private BurningRecipeSO currentBurningRecipeSO;
     private State state;
     #endregion
 
@@ -39,7 +42,7 @@ public class StoveCounter : BaseCounter
                 HandleFryingState();
                 break;
             case State.Fried:
-                // HandleFriedState();
+                HandleFriedState();
                 break;
             case State.Burned:
                 // HandleBurnedState();
@@ -57,14 +60,30 @@ public class StoveCounter : BaseCounter
 
         fryingTimer += Time.deltaTime;
 
-        Debug.Log("Frying timer: " + fryingTimer + " / " + currentFryingRecipeSO.fryingTimerMax);
-
         if (fryingTimer > currentFryingRecipeSO.fryingTimerMax)
         {
             GetKitchenObject().DestroySelf();
             KitchenObject.SpawnKitchenObject(currentFryingRecipeSO.outputKitchenObjectSO, this);
 
             state = State.Fried;
+            currentBurningRecipeSO = GetBurningRecipeSO(GetKitchenObject().GetKitchenObjectSO());
+            burningTimer = 0f;
+        }
+    }
+
+    private void HandleFriedState()
+    {
+        if (currentFryingRecipeSO == null)
+            return;
+
+        burningTimer += Time.deltaTime;
+
+        if (burningTimer > currentBurningRecipeSO.burningTimerMax)
+        {
+            GetKitchenObject().DestroySelf();
+            KitchenObject.SpawnKitchenObject(currentFryingRecipeSO.outputKitchenObjectSO, this);
+
+            state = State.Burned;
         }
     }
     #endregion
@@ -83,7 +102,7 @@ public class StoveCounter : BaseCounter
                 {
                     // drop it
                     player.GetKitchenObject().SetKitchenObjectHolder(this);
-                    currentFryingRecipeSO = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
+                    currentFryingRecipeSO = GetFryingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
                     fryingTimer = 0f;
                     state = State.Frying;
                 }
@@ -109,7 +128,7 @@ public class StoveCounter : BaseCounter
     #region private methods
     private KitchenObjectSO GetFryingRecipeOutput(KitchenObjectSO inputKitchenObjectSO)
     {
-        FryingRecipeSO fryingRecipe = GetFryingRecipe(inputKitchenObjectSO);
+        FryingRecipeSO fryingRecipe = GetFryingRecipeSO(inputKitchenObjectSO);
 
         if (fryingRecipe != null)
             return fryingRecipe.outputKitchenObjectSO;
@@ -122,10 +141,17 @@ public class StoveCounter : BaseCounter
     {
         return fryingRecipeSOArray.Any(fryingRecipe => fryingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
-    private FryingRecipeSO GetFryingRecipe(KitchenObjectSO inputKitchenObjectSO)
 
+    private FryingRecipeSO GetFryingRecipeSO(KitchenObjectSO inputKitchenObjectSO)
     {
-        return fryingRecipeSOArray.FirstOrDefault(cuttingRecipe => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
+        return fryingRecipeSOArray.FirstOrDefault(cuttingRecipe 
+            => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
+    }
+
+    private BurningRecipeSO GetBurningRecipeSO(KitchenObjectSO inputKitchenObjectSO)
+    {
+        return burningRecipeSOArray.FirstOrDefault(cuttingRecipe 
+            => cuttingRecipe.inputKitchenObjectSO == inputKitchenObjectSO);
     }
     #endregion
 }
