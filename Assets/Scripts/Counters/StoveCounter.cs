@@ -5,7 +5,9 @@ public class StoveCounter : BaseCounter
 {
     #region serialize fields
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
+
     private float fryingTimer;
+    private FryingRecipeSO _currentFryingRecipeSO;
     #endregion
 
     #region unity methods
@@ -13,20 +15,19 @@ public class StoveCounter : BaseCounter
     {
         if (HasKitchenObject())
         {
-            FryingRecipeSO fryingRecipeSO = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
 
-            if (fryingRecipeSO == null)
+            if (_currentFryingRecipeSO == null)
                 return;
 
             fryingTimer += Time.deltaTime;
 
-            Debug.Log("Frying timer: " + fryingTimer + " / " + fryingRecipeSO.fryingTimerMax);
+            Debug.Log("Frying timer: " + fryingTimer + " / " + _currentFryingRecipeSO.fryingTimerMax);
 
-            if (fryingTimer > fryingRecipeSO.fryingTimerMax)
+            if (fryingTimer > _currentFryingRecipeSO.fryingTimerMax)
             {
                 GetKitchenObject().DestroySelf();
 
-                KitchenObject.SpawnKitchenObject(fryingRecipeSO.outputKitchenObjectSO, this);
+                KitchenObject.SpawnKitchenObject(_currentFryingRecipeSO.outputKitchenObjectSO, this);
                 fryingTimer = 0f; // Reset the frying timer after cooking
             }
         }
@@ -47,6 +48,7 @@ public class StoveCounter : BaseCounter
                 {
                     // drop it
                     player.GetKitchenObject().SetKitchenObjectHolder(this);
+                    _currentFryingRecipeSO = GetFryingRecipe(GetKitchenObject().GetKitchenObjectSO());
                 }
             }
         }
@@ -57,6 +59,7 @@ public class StoveCounter : BaseCounter
             if (!player.HasKitchenObject())
             {
                 GetKitchenObject().SetKitchenObjectHolder(player);
+                _currentFryingRecipeSO = null;
                 fryingTimer = 0f;
             }
         }
