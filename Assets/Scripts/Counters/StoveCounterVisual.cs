@@ -11,6 +11,11 @@ public class StoveCounterVisual : MonoBehaviour
 
     protected void Start()
     {
+        if (stoveCounter == null)
+        {
+            Debug.LogError($"StoveCounter is not assigned in StoveCounterVisual. {gameObject.name}");
+            return;
+        }
         stoveCounter.OnStateChanged += StoveCounter_OnStateChanged;
     }
 
