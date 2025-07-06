@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da69f56280232fd4f8750861d02dadb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCounter: {fileID: 0}
+  baseCounter: {fileID: 9147190117675728426}
   visualGameObject:
   - {fileID: 3942990834037305930}
 --- !u!4 &3970202166513631637 stripped
@@ -299,3 +299,4 @@ MonoBehaviour:
   counterTopPoint: {fileID: 6781961327383464491}
   plateVisualPrefab: {fileID: 3812876574508226176, guid: c0c9afd619b40914a8f625c0535e2284, type: 3}
   platesCounter: {fileID: 9147190117675728426}
+  plateOffsetY: 0.1

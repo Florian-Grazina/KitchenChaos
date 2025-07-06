@@ -1,3 +1,4 @@
+using Assets.Scripts.Events;
 using System;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class PlatesCounter : BaseCounter
 
     #region events
     public event EventHandler OnPlateSpawned;
+    public event EventHandler OnPlateRemoved;
     #endregion
 
     #region unity methods
@@ -36,11 +38,20 @@ public class PlatesCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        throw new System.NotImplementedException();
+        //player has no object, pick it up
+        if (!player.HasKitchenObject())
+        {
+            if (platesSpawnAmount > 0)
+            {
+                platesSpawnAmount--;
+                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
+                OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
 
     public override void InteractAlternate(Player player)
     {
-        throw new System.NotImplementedException();
+
     }
 }
