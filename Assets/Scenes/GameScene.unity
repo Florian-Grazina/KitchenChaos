@@ -444,7 +444,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5999018742264320499, guid: 62c584b2fa16a6e42a69c8516ce96e7e, type: 3}
       propertyPath: m_Name
-      value: StoveCounter
+      value: StoveCounter z
       objectReference: {fileID: 0}
     - target: {fileID: 6468785527054440058, guid: 62c584b2fa16a6e42a69c8516ce96e7e, type: 3}
       propertyPath: m_LocalPosition.x

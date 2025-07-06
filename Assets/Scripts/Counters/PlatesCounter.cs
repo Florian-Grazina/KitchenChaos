@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class PlatesCounter : MonoBehaviour
+public class PlatesCounter : BaseCounter
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float spawnPlateTimer;
+    [SerializeField] private float spawnPlatetimerMax = 4f;
+    [SerializeField] private KitchenObjectSO plateKitchenObjectSO;
+
+    protected void Update()
     {
-        
+        spawnPlateTimer += Time.deltaTime;
+        if (spawnPlateTimer >= spawnPlatetimerMax)
+        {
+            spawnPlateTimer = 0f;
+            KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Interact(Player player)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void InteractAlternate(Player player)
+    {
+        throw new System.NotImplementedException();
     }
 }
