@@ -1,16 +1,31 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatesCounterVisual : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Transform counterTopPoint;
+    [SerializeField] private Transform plateVisualPrefab;
+    [SerializeField] private PlatesCounter platesCounter;
+    [SerializeField] private float plateOffsetY = 0.1f;
+
+    private List<Transform> plateVisualGameObjectList;
+
+    protected void Awake()
     {
-        
+        plateVisualGameObjectList = new();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void Start()
     {
-        
+        platesCounter.OnPlateSpawned += PlatesCounter_OnPlateSpawned;
+    }
+
+    private void PlatesCounter_OnPlateSpawned(object sender, EventArgs e)
+    {
+        Transform plateVisualTransform = Instantiate(plateVisualPrefab, counterTopPoint);
+        plateVisualTransform.localPosition = new Vector3(0f, plateOffsetY * plateVisualGameObjectList.Count, 0f);
+        plateVisualGameObjectList.Add(plateVisualTransform);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlatesCounter : BaseCounter
@@ -13,6 +14,11 @@ public class PlatesCounter : BaseCounter
     [SerializeField] private KitchenObjectSO plateKitchenObjectSO;
     #endregion
 
+    #region events
+    public event EventHandler OnPlateSpawned;
+    #endregion
+
+    #region unity methods
     protected void Update()
     {
         spawnPlateTimer += Time.deltaTime;
@@ -22,9 +28,11 @@ public class PlatesCounter : BaseCounter
             if (platesSpawnAmount < platesSpawnMax)
             {
                 platesSpawnAmount++;
+                OnPlateSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
     }
+    #endregion
 
     public override void Interact(Player player)
     {
