@@ -128,7 +128,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5802353021814373725, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
       propertyPath: m_Name
-      value: PlatesCiounter
+      value: PlatesCounter
       objectReference: {fileID: 0}
     - target: {fileID: 6486147452305881812, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 6781961327383464491}
   spawnPlatetimerMax: 4
-  plateKitchenObjectSO: {fileID: 0}
+  plateKitchenObjectSO: {fileID: 11400000, guid: bb7628c1c2a65cf489a40e85d60a5f07, type: 2}
 --- !u!4 &4340413101703161126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6486147452305881812, guid: 3b95611a4fa5c8f45b7e68d2d378de4e, type: 3}
@@ -269,10 +269,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4589716710238282922, guid: e21b499d164095947b7559f0267f0e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6605304905842360663}
   m_SourcePrefab: {fileID: 100100000, guid: e21b499d164095947b7559f0267f0e63, type: 3}
 --- !u!4 &4918880447311410712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: e21b499d164095947b7559f0267f0e63, type: 3}
   m_PrefabInstance: {fileID: 8931390897169437363}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4918880447311410713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: e21b499d164095947b7559f0267f0e63, type: 3}
+  m_PrefabInstance: {fileID: 8931390897169437363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6605304905842360663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4918880447311410713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c770e3c2e8b6b14a838eb32988a8186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class PlatesCounter : BaseCounter
 {
+    #region fields
     private float spawnPlateTimer;
+    private int platesSpawnAmount;
+    private int platesSpawnMax = 4;
+    #endregion
+
+    #region serialized fields
     [SerializeField] private float spawnPlatetimerMax = 4f;
     [SerializeField] private KitchenObjectSO plateKitchenObjectSO;
+    #endregion
 
     protected void Update()
     {
@@ -12,7 +19,10 @@ public class PlatesCounter : BaseCounter
         if (spawnPlateTimer >= spawnPlatetimerMax)
         {
             spawnPlateTimer = 0f;
-            KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, this);
+            if (platesSpawnAmount < platesSpawnMax)
+            {
+                platesSpawnAmount++;
+            }
         }
     }
 
