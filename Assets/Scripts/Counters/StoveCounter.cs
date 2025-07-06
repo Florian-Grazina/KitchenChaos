@@ -136,6 +136,7 @@ public class StoveCounter : BaseCounter, IHasProgress
             if (!player.HasKitchenObject())
             {
                 GetKitchenObject().SetKitchenObjectHolder(player);
+                OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(0f));
                 State = StateEnum.Idle;
             }
         }
