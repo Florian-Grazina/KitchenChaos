@@ -46,11 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 11400000, guid: bb7628c1c2a65cf489a40e85d60a5f07, type: 2}
-  valideKitchenObjectSOList:
+  validKitchenObjectSOList:
   - {fileID: 11400000, guid: dd46da209acad8048ac411bbef820a5d, type: 2}
   - {fileID: 11400000, guid: 1d04fd6f1dac47642804d706f5c28e7d, type: 2}
   - {fileID: 11400000, guid: 007d6dffef3c7054e99ac42065cbac97, type: 2}
-  - {fileID: 11400000, guid: 6ba39ac38e2eb5140897822c03c4b25e, type: 2}
   - {fileID: 11400000, guid: 1dc1ae6f31aa0d849a92ed7e22927634, type: 2}
   - {fileID: 11400000, guid: 7bcfa91809d3ee246bbf03c0bc0b4dc4, type: 2}
 --- !u!1001 &7394004200276833615
