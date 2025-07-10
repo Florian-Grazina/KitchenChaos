@@ -32,6 +32,9 @@ public class StoveCounter : BaseCounter, IHasProgress
             if (state == value) return;
             state = value;
             OnStateChanged?.Invoke(this, new OnStateChangedEventArgs(state));
+
+            if(State == StateEnum.Idle)
+                OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(0f));
         }
     }
     #endregion
@@ -132,11 +135,25 @@ public class StoveCounter : BaseCounter, IHasProgress
         // counter has an object
         else
         {
+            // player has an object
+            if (player.HasKitchenObject())
+            {
+                // player has a plate
+                if (player.GetKitchenObject() is PlateKitchenObject plate)
+                {
+                    // the ingredient can be added to the plate
+                    if (plate.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                        State = StateEnum.Idle;
+                    }
+                }
+            }
+
             //player has no object, pick it up
-            if (!player.HasKitchenObject())
+            else
             {
                 GetKitchenObject().SetKitchenObjectHolder(player);
-                OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs(0f));
                 State = StateEnum.Idle;
             }
         }
