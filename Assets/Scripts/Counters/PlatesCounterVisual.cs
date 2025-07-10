@@ -8,7 +8,7 @@ public class PlatesCounterVisual : MonoBehaviour
     [SerializeField] private Transform counterTopPoint;
     [SerializeField] private Transform plateVisualPrefab;
     [SerializeField] private PlatesCounter platesCounter;
-    [SerializeField] private float plateOffsetY = 0.1f;
+    [SerializeField] private float plateOffsetY = 0.2f;
 
     private List<Transform> plateVisualGameObjectList;
 
