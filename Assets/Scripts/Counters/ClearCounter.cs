@@ -13,8 +13,18 @@ public class ClearCounter : BaseCounter
         // counter has an object
         else
         {
+            // player has an object
+            if (player.HasKitchenObject())
+            {
+                // player has a plate
+                if (player.GetKitchenObject() is PlateKitchenObject plate)
+                {
+
+                }
+            }
+
             //player has no object, pick it up
-            if (!player.HasKitchenObject())
+            else
                 GetKitchenObject().SetKitchenObjectHolder(player);
         }
     }
