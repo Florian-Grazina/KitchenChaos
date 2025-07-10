@@ -19,7 +19,9 @@ public class ClearCounter : BaseCounter
                 // player has a plate
                 if (player.GetKitchenObject() is PlateKitchenObject plate)
                 {
-
+                    // the ingredient can be added to the plate
+                    if (plate.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                        GetKitchenObject().DestroySelf();
                 }
             }
 
