@@ -2,15 +2,7 @@ using UnityEngine;
 
 public class PlateCompleteVisual : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PlateKitchenObject plateKitchenObject;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
