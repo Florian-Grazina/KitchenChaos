@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4764856977290893841}
+  - component: {fileID: 50656608110340271}
   m_Layer: 5
   m_Name: IconTemplate
   m_TagString: Untagged
@@ -112,6 +113,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &50656608110340271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262146072978883460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e749939ec65c34eb182e4dd500aecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4568847715360447831
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +192,7 @@ GameObject:
   - component: {fileID: 3637755624477252389}
   - component: {fileID: 3953350371412257661}
   - component: {fileID: 3872811112832840067}
+  - component: {fileID: 5714435862825146046}
   m_Layer: 5
   m_Name: PlateIconsUI
   m_TagString: Untagged
@@ -293,6 +307,20 @@ MonoBehaviour:
   m_Spacing: {x: 0.05, y: 0.05}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &5714435862825146046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465846129926630404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3392b8e92c80d9f468b00d4faabcb866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plateKitchenObject: {fileID: -7747887482195698901}
+  iconTemplate: {fileID: 4764856977290893841}
 --- !u!1 &8919317305464368122
 GameObject:
   m_ObjectHideFlags: 0
