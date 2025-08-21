@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlateIconSingleUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image image;
 
-    // Update is called once per frame
-    void Update()
+    public void SetKitchenObjectSO(KitchenObjectSO kitchenObjectSO)
     {
-        
+        image.sprite = kitchenObjectSO.icon;
     }
 }
