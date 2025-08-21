@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlateKitchenObject : KitchenObject
@@ -45,6 +46,6 @@ public class PlateKitchenObject : KitchenObject
         return true;
     }
 
-    public List<KitchenObjectSO> GetKitchenObjectSOList() => kitchenObjectSOList;
+    public List<KitchenObjectSO> GetKitchenObjectSOList() => kitchenObjectSOList.OrderBy(ko => ko.name).ToList();
     #endregion
 }
